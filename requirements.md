@@ -7,16 +7,16 @@
 5. User Home Page
 6. Send message to followers
 7. User Profiles
-8. requirement
-9. requirement
-10. requirement
-11. requirement
-12. requirement
+8.  follow user
+9. search user profiles
+10. view follower count
+11. post a tweet 
+12. reply to a post 
 
 ## Non-functional Requirements
 
-1. non-functional
-2. non-functional
+1. ui interactive interface 
+2. unctional
 3. non-functional
 4. non-functional
 
