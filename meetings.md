@@ -12,6 +12,9 @@
 ## Meetings
 
 
-### 2022-11-15 at 
- Me and Ekansh worked on the project as we got the githib going and the starting files were added 
+### 2022-11-15 at 10:30 
+Navdip and Ekansh worked on the project as we got the github going and the starting files were added 
 
+### 2022-11-17 at 10:30
+	- Ekansh attended the meeting
+	- Worked on the functional requirements
