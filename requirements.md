@@ -16,9 +16,9 @@
 ## Non-functional Requirements
 
 1. ui interactive interface 
-2. unctional
-3. non-functional
-4. non-functional
+2. usability- should be easy to use
+3. maintainability- shouldn't crash, code should be well-documented
+4. Should work on different kinds of devices
 
 ## Use Cases
 
