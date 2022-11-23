@@ -92,7 +92,7 @@
         1. User uses the search bar to search for another user
         2. User selects the profile that the user searched for 
         3. User can now view the profile of searched user
-        4. User will be able to comment ont the searched user posts and message
+        4. User will be able to comment on the searched user posts and message
      **primary postcondition: The user is now able to see the searched user profile
      ** alternative sequence:
         1. The user searches for a user that is not in the system
