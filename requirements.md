@@ -68,7 +68,7 @@
      **primary postcondition: the User is able to make a unique user profile they can 
      ** alternative sequence:
 	1. the user selects a name unavible 
-	2. system prompts the user to choose a diffrent name and one that is not take,  	
+	2. system prompts the user to choose a diffrent name and one that is not taken
 	
 2. Follow User
 	**precondition: user is logged into account 
@@ -83,4 +83,32 @@
 	**primary postcondition: User is able to fllow other and keep a track of their messages and picture
 	** alternative sequence:
 		1.the user enters a profile name that does not exist 
-		2. the system prompts them that there is no profile name that matches and thye can search again for another name 
+		2. the system prompts them that there is no profile name that matches and they can search again for another name 
+
+3. Search User Profiles
+    **preconditions: The user has made an account and is logged in
+    **trigger: User uses the search bar to search for another user
+    **primary sequence:
+        1. User uses the search bar to search for another user
+        2. User selects the profile that the user searched for 
+        3. User can now view the profile of searched user
+        4. User will be able to comment ont the searched user posts and message
+     **primary postcondition: The user is now able to see the searched user profile
+     ** alternative sequence:
+        1. The user searches for a user that is not in the system
+        2. The system does not display a user for the user to view and prompts the user to search for a different user
+
+4. View follower count
+    **preconditions: The user has made an account and is logged in
+    **trigger: Selects the view profile option
+    **primary sequence:
+        1. User is logged into their account and selects the view profile option
+        2. User can now see a numeric value that displays the number of followers they have
+        3. User can also see a numeric value that displays the number of people that they follow
+        4. Users can view the profiles of the people that they follow and their followers
+     **primary postcondition: The user is able to see their follower account
+     ** alternative sequence:
+        1. The user does not have an account or is not logged in
+        2. The system prompts the user to make an account or login
+
+
