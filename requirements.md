@@ -111,6 +111,19 @@
         1. The user does not have an account or is not logged in
         2. The system prompts the user to make an account or login
 
+5. Post a tweet
+    **preconditions: The user has made an account and is logged in
+    **trigger: The user clicks the post button
+    **primary sequence:
+	1. User who is logged in selects the post button
+	2. A text box appears on the screen
+	3. The user can type the message they would like to post
+	4. Clicking the post button posts the message
+    **primary postcondition: Other users can now see the posted message when viewing the user's account
+    **alternative sequence:
+	1. The user does not have an account or is not logged in
+	2. The system prompts the user to make an account or login
+
 6. Reply to a post
     **preconditions: The user has made an account and is logged in
     **trigger: User selects and views a post
