@@ -18,3 +18,7 @@ Navdip and Ekansh worked on the project as we got the github going and the start
 ### 2022-11-17 at 10:30
 	- Ekansh attended the meeting
 	- Worked on the functional requirements
+
+### 2022-11-23 at 7:00
+	- Everyone attended the meeting
+	- Finished the use cases and made some minor changes to the requirements file

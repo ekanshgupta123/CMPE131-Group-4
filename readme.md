@@ -3,4 +3,5 @@
 - Navdip Dosanjh (@DosanjhNavdip)
 - Joshua Mack (@Baygulll)
 - Haomiao Wang (@hmw17)
-- Name (@username)
+
+Team Lead: Ekansh Gupta
