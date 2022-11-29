@@ -52,15 +52,15 @@
 	2. the system prompts them that there is no profile name that matches and they can search again for another name
 
 3. Search User Profiles
-    **preconditions: The user has made an account and is logged in
-    **trigger: User uses the search bar to search for another user
-    **primary sequence:
+    - **Pre-conditions:** The user has made an account and is logged in
+    - **Trigger:** User uses the search bar to search for another user
+    - **Primary Sequence:**
         1. User uses the search bar to search for another user
         2. User selects the profile that the user searched for
         3. User can now view the profile of searched user
         4. User will be able to comment on the searched user posts and message
-     **primary postcondition: The user is now able to see the searched user profile
-     **alternative sequence:
+    - **Primary Postcondition:** The user is now able to see the searched user profile
+    - **Alternative Sequence:**
         1. The user searches for a user that is not in the system
         2. The system does not display a user for the user to view and prompts the user to search for a different user
 
