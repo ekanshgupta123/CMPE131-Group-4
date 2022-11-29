@@ -25,42 +25,42 @@
     **preconditions: The user has made an account and logged into it
     **trigger: Selects create profile
     **primary sequence:
-	1.system ask for profile name
+	1. system ask for profile name
 	2. User selects a name not taken
-	3.System asks for profile picture
+	3. System asks for profile picture
 	4. user selects a phtot to be user profile picture
 	5. using the name and photo system create the profile
 	6. the profile is added to the database and registered and the name can not be used again
      **primary postcondition: the User is able to make a unique user profile they can
-     ** alternative sequence:
+     **alternative sequence:
 	1. the user selects a name unavible
 	2. system prompts the user to choose a diffrent name and one that is not taken
 
 2. Follow User
-	**precondition: user is logged into account
-	**trigger: user puts the name of other user into search bar
-	**primary sequence:
-		1. User goes to search bar and enters other user profile name
-		2. system checks in the database for a user name that matches the one put in
-		3. System responds back with user that is matches the profile
-		4. User can click the follow button inorder to follow the other user
-		5.system makes a note of which user is following and puts any message form them into the feed of the other
+    **precondition: user is logged into account
+    **trigger: user puts the name of other user into search bar
+    **primary sequence:
+	1. User goes to search bar and enters other user profile name
+	2. system checks in the database for a user name that matches the one put in
+	3. System responds back with user that is matches the profile
+	4. User can click the follow button inorder to follow the other user
+	5. system makes a note of which user is following and puts any message form them into the feed of the other
 
-	**primary postcondition: User is able to fllow other and keep a track of their messages and picture
-	** alternative sequence:
-		1.the user enters a profile name that does not exist
-		2. the system prompts them that there is no profile name that matches and they can search again for another name
+    **primary postcondition: User is able to fllow other and keep a track of their messages and picture
+    **alternative sequence:
+	1. the user enters a profile name that does not exist
+	2. the system prompts them that there is no profile name that matches and they can search again for another name
 
 3. Search User Profiles
-    **preconditions: The user has made an account and is logged in
-    **trigger: User uses the search bar to search for another user
-    **primary sequence:
+    - **Pre-conditions:** The user has made an account and is logged in
+    - **Trigger:** User uses the search bar to search for another user
+    - **Primary Sequence:**
         1. User uses the search bar to search for another user
         2. User selects the profile that the user searched for
         3. User can now view the profile of searched user
         4. User will be able to comment on the searched user posts and message
-     **primary postcondition: The user is now able to see the searched user profile
-     **alternative sequence:
+    - **Primary Postcondition:** The user is now able to see the searched user profile
+    - **Alternative Sequence:**
         1. The user searches for a user that is not in the system
         2. The system does not display a user for the user to view and prompts the user to search for a different user
 
