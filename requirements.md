@@ -21,20 +21,20 @@
 4. Should work on different kinds of devices
 
 ## Use Cases
-1. User profiles
-   - **Pre-conditions:** The user has made an account and logged into it
-   - **Trigger:** Selects create profile
-   - **Primary Sequence:**
-	1. system ask for profile name
-	2. User selects a name not taken
-	3. System asks for profile picture
-	4. user selects a phtot to be user profile picture
-	5. using the name and photo system create the profile
-	6. the profile is added to the database and registered and the name can not be used again
-    - **Primary Postcondition:** the User is able to make a unique user profile they can
+1. User Profiles
+    - **Pre-conditions:** The user has made an account and is logged in
+    - **Trigger:** Selects create profile
+    - **Primary Sequence:**
+        1. System ask for profile name
+        2. User selects a name not taken
+        3. System asks for profile picture
+        4. User selects a phtot to be user profile picture
+	5. Using the name and photo system create the profile
+	6. The profile is added to the database and registered and the name can not be used again
+    - **Primary Postcondition:** User is able to make a unique user profile they can
     - **Alternative Sequence:**
-	1. the user selects a name unavible
-	2. system prompts the user to choose a diffrent name and one that is not taken
+        1. The user selects a name unavailable
+        2. The system prompts the user to choose a diffrent name and one that is not taken
 
 2. Follow User
    - **Pre-conditions:** user is logged into account
