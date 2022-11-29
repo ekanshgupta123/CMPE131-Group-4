@@ -76,7 +76,7 @@
         2. The system prompts the user to make an account or login
 
 5. Post a tweet
-   - **Pre-conditions:** The user has made an account and is logged in
+   - **Pre-condition:** The user has made an account and is logged in
    - **Trigger:** The user clicks the post button
    - **Primary sequence:**
         1. User who is logged in selects the post button
