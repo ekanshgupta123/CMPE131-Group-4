@@ -25,12 +25,12 @@
     - **Pre-conditions:** The user has made an account and is logged in
     - **Trigger:** Selects create profile
     - **Primary Sequence:**
-    	1. System prompts user to enter their username
+        1. System prompts user to enter their username
         2. User inputs an available name
-	3. System prompts user to enter their password
-	4. User inputs a password
-	5. System prompts user to submit a profile picture
-	6. User selects a photo to be their profile picture
+        3. System prompts user to enter their password
+        4. User inputs a password
+        5. System prompts user to submit a profile picture
+        6. User selects a photo to be their profile picture
         7. After confirming, the system creates the user profile with the given username and photo
         8. The profile is added to the database and registered and the name can not be used again
     - **Primary Postcondition:** User is able to make a unique user profile that they can use to post and follow users
