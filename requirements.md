@@ -41,8 +41,8 @@
     - **Trigger:** User puts the name of other user into search bar
     - **Primary Sequence:**
         1. User goes to search bar and enters other user profile name
-	2. User can click the follow button in order to follow the other user
-	3. The user that received the follow will receive a follow requeust that shows who is following them
+        2. User can click the follow button in order to follow the other user
+        3. The user that received the follow will receive a follow requeust that shows who is trying to follow them
     - **Primary Postcondition:** User is able to follow others and keep a track of their messages and pictures
     - **Alternative Sequence:**
         1. The user enters a profile name that does not exist
