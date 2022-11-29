@@ -22,32 +22,32 @@
 
 ## Use Cases
 1. User profiles
-    **preconditions: The user has made an account and logged into it
-    **trigger: Selects create profile
-    **primary sequence:
+   - **Pre-conditions:** The user has made an account and logged into it
+   - **Trigger:** Selects create profile
+   - **Primary Sequence:**
 	1. system ask for profile name
 	2. User selects a name not taken
 	3. System asks for profile picture
 	4. user selects a phtot to be user profile picture
 	5. using the name and photo system create the profile
 	6. the profile is added to the database and registered and the name can not be used again
-     **primary postcondition: the User is able to make a unique user profile they can
-     **alternative sequence:
+    - **Primary Postcondition:** the User is able to make a unique user profile they can
+    - **Alternative Sequence:**
 	1. the user selects a name unavible
 	2. system prompts the user to choose a diffrent name and one that is not taken
 
 2. Follow User
-    **precondition: user is logged into account
-    **trigger: user puts the name of other user into search bar
-    **primary sequence:
+   - **Pre-conditions:** user is logged into account
+   - **Trigger:** user puts the name of other user into search bar
+   - **Primary Sequence:**
 	1. User goes to search bar and enters other user profile name
 	2. system checks in the database for a user name that matches the one put in
 	3. System responds back with user that is matches the profile
 	4. User can click the follow button inorder to follow the other user
 	5. system makes a note of which user is following and puts any message form them into the feed of the other
 
-    **primary postcondition: User is able to fllow other and keep a track of their messages and picture
-    **alternative sequence:
+   - **Primary Postcondition:** User is able to fllow other and keep a track of their messages and picture
+   - **Alternative Sequence:**
 	1. the user enters a profile name that does not exist
 	2. the system prompts them that there is no profile name that matches and they can search again for another name
 
@@ -78,28 +78,28 @@
         2. The system prompts the user to make an account or login
 
 5. Post a tweet
-    **preconditions: The user has made an account and is logged in
-    **trigger: The user clicks the post button
-    **primary sequence:
+   - **Pre-conditions:** The user has made an account and is logged in
+   - **Trigger:** The user clicks the post button
+   - **Primary Sequence:**
 	1. User who is logged in selects the post button
 	2. A text box appears on the screen
 	3. The user can type the message they would like to post
 	4. Clicking the post button posts the message
-    **primary postcondition: Other users can now see the posted message when viewing the user's account
-    **alternative sequence:
+   - **Primary Postcondition:** Other users can now see the posted message when viewing the user's account
+   - **Alternative Sequence:**
 	1. The user does not have an account or is not logged in
 	2. The system prompts the user to make an account or login
 
 6. Reply to a post
-    **preconditions: The user has made an account and is logged in
-    **trigger: User selects and views a post
-    **primary sequence:
+   - **Pre-conditions:** The user has made an account and is logged in
+   - **Trigger:** User selects and views a post
+   - **Primary Sequence:**
         1. User is logged into their account and selects the view post option
         2. The user enters the keyword of the post to be searched in the search box
         3. Users can now see the post they selected
         4. Users can choose to comment on a post of their choice
         5. Users can also see other users' comments on this post and the post's author's reply
-    **primary postcondition: Users can browse all viewable posts and the posts they want to search
-    **alternative sequence:
+   - **Primary Postcondition:** Users can browse all viewable posts and the posts they want to search
+   - **Alternative Sequence:**
         1. The user does not have an account or is not logged in
         2. The post searched by the user does not exist, the system prompts the user to search again
