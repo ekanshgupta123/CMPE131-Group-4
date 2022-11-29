@@ -29,14 +29,14 @@
         2. User inputs an available name
 	3. System prompts user to enter their password
 	4. User inputs a password
-     	5. System prompts user to submit a profile picture
-     	6. User selects a photo to be their profile picture
+	5. System prompts user to submit a profile picture
+	6. User selects a photo to be their profile picture
         7. After confirming, the system creates the user profile with the given username and photo
         8. The profile is added to the database and registered and the name can not be used again
     - **Primary Postcondition:** User is able to make a unique user profile that they can use to post and follow users
     - **Alternative Sequence:**
         1. The username inputted by the user is unavailable
-        2. The system prompts the user to choose a diffrent usernamename that is not taken
+        2. The system prompts the user to choose a diffrent username that is not taken
 
 2. Follow User
     - **Pre-conditions:** User is logged into account
