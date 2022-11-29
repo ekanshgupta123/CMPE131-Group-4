@@ -30,26 +30,26 @@
      	3. System asks for profile picture
      	4. User selects a phtot to be user profile picture
         5. Using the name and photo system create the profile
-       6. The profile is added to the database and registered and the name can not be used again
+        6. The profile is added to the database and registered and the name can not be used again
     - **Primary Postcondition:** User is able to make a unique user profile they can
     - **Alternative Sequence:**
         1. The user selects a name unavailable
         2. The system prompts the user to choose a diffrent name and one that is not taken
 
 2. Follow User
-   - **Pre-conditions:** user is logged into account
-   - **Trigger:** user puts the name of other user into search bar
-   - **Primary Sequence:**
+    - **Pre-conditions:** User is logged into account
+    - **Trigger:** User puts the name of other user into search bar
+    - **Primary Sequence:**
         1. User goes to search bar and enters other user profile name
-        2. system checks in the database for a user name that matches the one put in
+        2. System checks in the database for a user name that matches the one put in
         3. System responds back with user that is matches the profile
         4. User can click the follow button inorder to follow the other user
-        5. system makes a note of which user is following and puts any message form them into the feed of the other
+        5. System makes a note of which user is following and puts any message form them into the feed of the other
+    - **Primary Postcondition:** User is able to follow others and keep a track of their messages and pictures
+    - **Alternative Sequence:**
+        1. The user enters a profile name that does not exist
+        2. The system prompts them that there is no profile name that matches and they can search again for another name
 
-   - **Primary Postcondition:** User is able to fllow other and keep a track of their messages and picture
-   - **Alternative Sequence:**
-	1. the user enters a profile name that does not exist
-	2. the system prompts them that there is no profile name that matches and they can search again for another name
 
 3. Search User Profiles
     - **Pre-conditions:** The user has made an account and is logged in
