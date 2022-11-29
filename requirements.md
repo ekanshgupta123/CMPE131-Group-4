@@ -40,11 +40,11 @@
    - **Pre-conditions:** user is logged into account
    - **Trigger:** user puts the name of other user into search bar
    - **Primary Sequence:**
-	1. User goes to search bar and enters other user profile name
-	2. system checks in the database for a user name that matches the one put in
-	3. System responds back with user that is matches the profile
-	4. User can click the follow button inorder to follow the other user
-	5. system makes a note of which user is following and puts any message form them into the feed of the other
+        1. User goes to search bar and enters other user profile name
+        2. system checks in the database for a user name that matches the one put in
+        3. System responds back with user that is matches the profile
+        4. User can click the follow button inorder to follow the other user
+        5. system makes a note of which user is following and puts any message form them into the feed of the other
 
    - **Primary Postcondition:** User is able to fllow other and keep a track of their messages and picture
    - **Alternative Sequence:**
