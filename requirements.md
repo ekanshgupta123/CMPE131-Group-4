@@ -29,8 +29,8 @@
         2. User selects a name not taken
         3. System asks for profile picture
         4. User selects a phtot to be user profile picture
-	5. Using the name and photo system create the profile
-	6. The profile is added to the database and registered and the name can not be used again
+        5. Using the name and photo system create the profile
+        6. The profile is added to the database and registered and the name can not be used again
     - **Primary Postcondition:** User is able to make a unique user profile they can
     - **Alternative Sequence:**
         1. The user selects a name unavailable
