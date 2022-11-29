@@ -60,7 +60,7 @@
         3. User can now view the profile of searched user
         4. User will be able to comment on the searched user posts and message
      **primary postcondition: The user is now able to see the searched user profile
-     ** alternative sequence:
+     **alternative sequence:
         1. The user searches for a user that is not in the system
         2. The system does not display a user for the user to view and prompts the user to search for a different user
 
@@ -73,7 +73,7 @@
         3. User can also see a numeric value that displays the number of people that they follow
         4. Users can view the profiles of the people that they follow and their followers
      **primary postcondition: The user is able to see their follower account
-     ** alternative sequence:
+     **alternative sequence:
         1. The user does not have an account or is not logged in
         2. The system prompts the user to make an account or login
 
@@ -100,6 +100,6 @@
         4. Users can choose to comment on a post of their choice
         5. Users can also see other users' comments on this post and the post's author's reply
     **primary postcondition: Users can browse all viewable posts and the posts they want to search
-    ** alternative sequence:
+    **alternative sequence:
         1. The user does not have an account or is not logged in
         2. The post searched by the user does not exist, the system prompts the user to search again
