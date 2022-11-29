@@ -25,14 +25,14 @@
     **preconditions: The user has made an account and logged into it
     **trigger: Selects create profile
     **primary sequence:
-	1.system ask for profile name
+	1. system ask for profile name
 	2. User selects a name not taken
-	3.System asks for profile picture
+	3. System asks for profile picture
 	4. user selects a phtot to be user profile picture
 	5. using the name and photo system create the profile
 	6. the profile is added to the database and registered and the name can not be used again
      **primary postcondition: the User is able to make a unique user profile they can
-     ** alternative sequence:
+     **alternative sequence:
 	1. the user selects a name unavible
 	2. system prompts the user to choose a diffrent name and one that is not taken
 
@@ -48,8 +48,8 @@
 
     **primary postcondition: User is able to fllow other and keep a track of their messages and picture
     **alternative sequence:
-		1.the user enters a profile name that does not exist
-		2. the system prompts them that there is no profile name that matches and they can search again for another name
+	1. the user enters a profile name that does not exist
+	2. the system prompts them that there is no profile name that matches and they can search again for another name
 
 3. Search User Profiles
     **preconditions: The user has made an account and is logged in
