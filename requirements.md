@@ -37,17 +37,17 @@
 	2. system prompts the user to choose a diffrent name and one that is not taken
 
 2. Follow User
-	**precondition: user is logged into account
-	**trigger: user puts the name of other user into search bar
-	**primary sequence:
-		1. User goes to search bar and enters other user profile name
-		2. system checks in the database for a user name that matches the one put in
-		3. System responds back with user that is matches the profile
-		4. User can click the follow button inorder to follow the other user
-		5.system makes a note of which user is following and puts any message form them into the feed of the other
+    **precondition: user is logged into account
+    **trigger: user puts the name of other user into search bar
+    **primary sequence:
+	1. User goes to search bar and enters other user profile name
+	2. system checks in the database for a user name that matches the one put in
+	3. System responds back with user that is matches the profile
+	4. User can click the follow button inorder to follow the other user
+	5. system makes a note of which user is following and puts any message form them into the feed of the other
 
-	**primary postcondition: User is able to fllow other and keep a track of their messages and picture
-	** alternative sequence:
+    **primary postcondition: User is able to fllow other and keep a track of their messages and picture
+    **alternative sequence:
 		1.the user enters a profile name that does not exist
 		2. the system prompts them that there is no profile name that matches and they can search again for another name
 
