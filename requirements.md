@@ -15,10 +15,10 @@
 
 ## Non-functional Requirements
 
-1. ui interactive interface
-2. usability- should be easy to use
-3. maintainability- shouldn't crash, code should be well-documented
-4. Should work on different kinds of devices
+1. Passwords should be at least 8 characters long with at least 1 number and 1 special character
+2. Should be easy to use
+3. The website should load in less than 5 seconds
+4. Should resize window on different devices
 
 ## Use Cases
 1. User Profiles
