@@ -16,9 +16,9 @@
 ## Non-functional Requirements
 
 1. Passwords should be at least 8 characters long with at least 1 number and 1 special character
-2. Should be easy to use
+2. The website should have a 99.5% uptime
 3. The website should load in less than 5 seconds
-4. Should resize window on different devices
+4. The website should resize webpage window on different devices
 
 ## Use Cases
 1. User Profiles
