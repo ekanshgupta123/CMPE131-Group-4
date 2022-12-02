@@ -1,25 +1,23 @@
 {% extends 'base.html' %}
 {% block head %}
-<title> Login </title>
+<title> Sign Up </title>
 {% endblock %}
 
 {% block header %}
-<h1> Login Page </h1>
+<h1> Sign Up Page </h1>
 {% endblock %}
 
 {% block body %}
 <div class="form">
-    <form>
+    <form action="{{ url_for('createAccount')}}", method = "POST">
         <div>
             {{ form.username(class_='form-control', placeholder = 'Username', size=32)}}
-
-            <ul>
-                {% for error in form.username.errors %}
-                    <li>
-                        {{ error }}
-                    </li>
-                {% endfor %}
-            </ul>
+            {% for error in form.username.errors %}
+            <li>
+                {{ error }}
+            </li>
+        {% endfor %}
+    
         </div>
         <div>
             {{ form.password(class_='form-control', placeholder = 'Password', size=32)}}
@@ -31,13 +29,17 @@
     
         </div>
         <div>
-            {{ form.rememberMe()}}
-            {{ form.rememberMe.label}}
+            {{ form.confirm_password(class_='form-control', placeholder = 'Confirm Password', size=32)}}
+            {% for error in form.confirm_password.errors %}
+            <li>
+                {{ error }}
+            </li>
+        {% endfor %}
         </div>
         <div>
             {{ form.submit() }}
-            {{ form.signUp() }}
         </div>
+        {{ form.csrf_token }}
     </form>
 </div>
 {% endblock %}
