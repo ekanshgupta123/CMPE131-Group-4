@@ -37,22 +37,29 @@ def createAccount():
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
     if not current_user.is_authenticated:
+        flash("Log in first in order to view profile. ")
         return redirect(url_for('login'))
-    return "Can only go here if logged in"
+    return render_template('profile.html')
 
 @app.route('/logout', methods = ['GET'])
 def logout():
-    logout_user()
-    flash("You have been logged out. ")
+    if current_user.is_authenticated:
+        logout_user()
+        flash("You have been logged out. ")
+        return redirect(url_for('login'))
+    flash("You are not logged in. ")
     return redirect(url_for('login'))
 
 @app.route('/delete', methods = ['GET', 'POST'])
-@login_required
 def delete():
-    current_user.delete()
-    db.session.commit()
-    flash('Your account has been successfully deleted.')
+    if current_user.is_authenticated:
+        current_user.delete()
+        db.session.commit()
+        flash('Your account has been successfully deleted.')
+        return redirect(url_for('login'))
+    flash("You are not logged in. ")
     return redirect(url_for('login'))
+        
 
 if __name__ == "__main__":
     app.run(debug=True)

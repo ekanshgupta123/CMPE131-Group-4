@@ -8,68 +8,45 @@
 {% endblock %}
 
 {% block body %}
-    <!-- {% block navbar %}
-        <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{{url_for('login')}}">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{url_for('profile')}}">Profile</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Account
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{url_for('logout')}}">Log out</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{url_for('delete')}}">Delete Account</a>
-          </div>
-        </li>
-      </ul>
-    {% endblock %} -->
-<div class="form">
-    <form action="{{ url_for('createAccount')}}", method = "POST">
-        <div>
-            {{ form.username(class_='form-control', placeholder = 'Username', size=32)}}
-            
-            {% for error in form.username.errors %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                {{ error }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {% endfor %}
-    
+<form action="{{ url_for('createAccount')}}", method = "POST">
+    <div class="form-group">
+      <label for="exampleInputUsername">Username</label>
+      {{ form.username(class_='form-control', placeholder = 'Username', size=32)}}            
+      {% for error in form.username.errors %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ error }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      {{ form.password(class_='form-control', placeholder = 'Password', size=32)}}
+      {% for error in form.password.errors %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ error }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputConfirmPassword">Confirm Password</label>
+        {{ form.confirm_password(class_='form-control', placeholder = 'Confirm Password', size=32)}}
+        {% for error in form.confirm_password.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ error }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-        <div>
-            {{ form.password(class_='form-control', placeholder = 'Password', size=32)}}
-            {% for error in form.password.errors %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                {{ error }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {% endfor %}
-    
-        </div>
-        <div>
-            {{ form.confirm_password(class_='form-control', placeholder = 'Confirm Password', size=32)}}
-            {% for error in form.confirm_password.errors %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                {{ error }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.submit() }}
-        </div>
-        {{ form.csrf_token }}
-    </form>
+        {% endfor %}
+      </div>
+    {{ form.submit() }}
+    {{ form.csrf_token }}
+  </form>
 </div>
 {% endblock %}
