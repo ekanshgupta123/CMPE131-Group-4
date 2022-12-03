@@ -9,7 +9,7 @@
 
 {% block body %}
 <div class="form">
-    <form>
+    <form action="{{ url_for('login')}}", method = "POST">
         <div>
             {{ form.username(class_='form-control', placeholder = 'Username', size=32)}}
 
@@ -36,8 +36,9 @@
         </div>
         <div>
             {{ form.submit() }}
-            {{ form.signUp() }}
+            <button onclick="location.href = 'signUp';">Sign Up</button>
         </div>
+        {{ form.csrf_token }}
     </form>
 </div>
 {% endblock %}
