@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_login import LoginManager, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 import os
 
@@ -10,7 +11,10 @@ app.config.from_mapping(
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 )
 db = SQLAlchemy(app)
-class User(db.Model):
+login = LoginManager(app)
+login.init_app(app)
+
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(200), nullable = False)
     password = db.Column(db.String(200), nullable = False)
