@@ -20,4 +20,6 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(200), nullable = False)
     def __repr__(self):
         return '<User {}>'.format(self.username)
+    def delete(self):
+        db.session.delete(self)
 
