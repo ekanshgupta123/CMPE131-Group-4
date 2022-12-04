@@ -2,16 +2,31 @@ from flask import Flask, render_template, redirect, url_for, flash
 from flask_login import login_user, current_user, logout_user, login_required
 
 from config import *
-from signUp import signUp, loginForm
+from signUp import *
+from werkzeug.utils import secure_filename
+import uuid as uuid
 
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+
 @app.route('/', methods = ['GET', 'POST'])
 def homePage():
+    form = PostForm()
     if current_user.is_authenticated:
-        return render_template('homePage.html', user=current_user)
+        if form.validate_on_submit():
+            post = Posts(title=form.title.data, content=form.content.data)
+            form.title.data = ''
+            form.content.data = ''
+            db.session.add(post)
+            db.session.commit()
+            flash("Post was submitted successfully. ")
+        return render_template('homePage.html', user=current_user, form=form)
     return redirect(url_for('login'))
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -22,8 +37,6 @@ def login():
         login_user(user_object)
         if current_user.is_authenticated:
             return redirect(url_for('profile'))
-        return "Not logged in :("
-
     return render_template('login.html', form=form, user=current_user)
 
 @app.route('/signUp', methods=['GET', 'POST'])
@@ -32,8 +45,14 @@ def createAccount():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
+        profile_picture = form.profile_picture.data
         
-        user = User(username=username, password=password)
+        pic_filename = secure_filename(profile_picture.filename)
+        pic_name = str(uuid.uuid1()) + "_" + pic_filename
+        profile_picture.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
+        pic_filename = pic_name
+
+        user = User(username=username, password=password, profile_picture=pic_filename)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('profile'))
@@ -41,10 +60,10 @@ def createAccount():
 
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
+    posts = Posts.query.order_by(Posts.date_posted)
     if not current_user.is_authenticated:
-        flash("Log in first in order to view profile. ")
         return redirect(url_for('login'))
-    return render_template('profile.html', user=current_user)
+    return render_template('profile.html', user=current_user, posts=posts)
 
 @app.route('/logout', methods = ['GET'])
 def logout():
