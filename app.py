@@ -9,6 +9,11 @@ def load_user(id):
     return User.query.get(int(id))
 
 @app.route('/', methods = ['GET', 'POST'])
+def homePage():
+    if current_user.is_authenticated:
+        return render_template('homePage.html', user=current_user)
+    return redirect(url_for('login'))
+
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     form = loginForm()
@@ -19,7 +24,7 @@ def login():
             return redirect(url_for('profile'))
         return "Not logged in :("
 
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, user=current_user)
 
 @app.route('/signUp', methods=['GET', 'POST'])
 def createAccount():
@@ -32,14 +37,14 @@ def createAccount():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('profile'))
-    return render_template('signUp.html', form=form)
+    return render_template('signUp.html', form=form, user=current_user)
 
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
     if not current_user.is_authenticated:
         flash("Log in first in order to view profile. ")
         return redirect(url_for('login'))
-    return render_template('profile.html')
+    return render_template('profile.html', user=current_user)
 
 @app.route('/logout', methods = ['GET'])
 def logout():
