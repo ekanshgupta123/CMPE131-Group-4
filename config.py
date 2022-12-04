@@ -1,8 +1,8 @@
-from datetime import datetime
 from flask import Flask
 from flask_login import LoginManager, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 import os
+from sqlalchemy.sql import func
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__)) 
@@ -21,13 +21,15 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(200), nullable = False)
     password = db.Column(db.String(200), nullable = False)
     profile_picture = db.Column(db.String(), nullable = True)
+    posts = db.relationship('Posts', backref='user', passive_deletes=True)
     def __repr__(self):
         return '<User {}>'.format(self.username)
     def delete(self):
         db.session.delete(self)
 
-class Posts(UserMixin, db.Model):
+class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
-    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    date_posted = db.Column(db.DateTime(timezone=True), default=func.now())
     content = db.Column(db.Text)
+    author = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)

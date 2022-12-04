@@ -6,7 +6,7 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        {% if not user.is_authenticated %}
+        {% if not current_user.is_authenticated %}
             <li class="nav-item">
             <a class="nav-link" href="{{url_for('login')}}">Login/Sign Up</a>
             </li>
@@ -29,8 +29,9 @@
             </li>
         {% endif %}
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="form-inline my-2 my-lg-0" method="POST" action="{{url_for('search')}}">
+          {{ form.hidden_tag() }}
+        <input name = "searched" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>

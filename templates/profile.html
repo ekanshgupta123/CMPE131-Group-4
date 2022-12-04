@@ -38,13 +38,16 @@
 <h1> Your Blog Posts! </h1>
 
 {% for post in posts %}
-<div class="card w-75">
-    <div class="card-body">
-      <h3 class="card-title"> {{ post.title }} </h5>
-      <h5 class="card-text"> {{post.content }} </h5>
-      <p class="card-text"> Date posted: {{ post.date_posted }}</p>
-    </div>
-  </div>  
+<div style="width:1450px; margin:0 auto;">
+    <div class="card w-75">
+        <div class="card-body">
+            <a href="/posts/{{post.user.username}}"> {{ post.user.username }} </a>
+            <h3 class="card-title"> {{ post.title }} </h5>
+            <h5 class="card-text"> {{post.content }} </h5>
+            <div class="card-footer text-muted"> Date posted: {{ post.date_posted }}</div>
+        </div>
+      </div>  
+</div>
   <br/>
 {% endfor %}
 {% endblock %}
