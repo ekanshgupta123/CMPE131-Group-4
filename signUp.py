@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
+from flask_wtf.file import FileField
 from config import User
 import re
 
@@ -22,6 +23,7 @@ class signUp(FlaskForm):
         Length(min=8, message="Password must be more than 8 characters long")])
     confirm_password = PasswordField('Password', validators=[DataRequired(message="Password required."), 
         EqualTo('password', message='Password must match.')])
+    profile_picture = FileField("Profile Picture")
     submit = SubmitField('Sign Up')
 
     #username cannot be in existing dataset

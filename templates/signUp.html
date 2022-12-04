@@ -10,7 +10,7 @@
 {% block body %}
 <form action="{{ url_for('createAccount')}}", method = "POST">
     <div class="form-group">
-      <label for="exampleInputUsername">Username</label>
+      <label for="exampleInputUsername">Username: </label>
       {{ form.username(class_='form-control', placeholder = 'Username', size=32)}}            
       {% for error in form.username.errors %}
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -22,7 +22,7 @@
       {% endfor %}
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
+      <label for="exampleInputPassword1">Password: </label>
       {{ form.password(class_='form-control', placeholder = 'Password', size=32)}}
       {% for error in form.password.errors %}
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -34,7 +34,7 @@
       {% endfor %}
     </div>
     <div class="form-group">
-        <label for="exampleInputConfirmPassword">Confirm Password</label>
+        <label for="exampleInputConfirmPassword">Confirm Password: </label>
         {{ form.confirm_password(class_='form-control', placeholder = 'Confirm Password', size=32)}}
         {% for error in form.confirm_password.errors %}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -45,7 +45,20 @@
         </div>
         {% endfor %}
       </div>
-    {{ form.submit() }}
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Profile Picture: </label> 
+        <br/>
+        {{ form.profile_picture() }}
+        {% for error in form.profile_picture.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ error }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+      </div>
+    {{ form.submit(class = 'button-signUp') }}
     {{ form.csrf_token }}
   </form>
 </div>

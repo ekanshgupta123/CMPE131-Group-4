@@ -12,3 +12,11 @@ header {
 .form {
     text-align: center;
 }
+.button-signUp {
+    color: white;
+    background-color: blue;
+}
+.button-login {
+    color: white;
+    background-color: green;
+}
