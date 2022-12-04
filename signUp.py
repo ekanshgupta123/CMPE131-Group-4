@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
 from flask_wtf.file import FileField
 from config import User
 import re
-
+from wtforms.widgets import TextArea
 
 def invalid_credentials(form, field):
     username_entered = form.username.data
@@ -49,3 +49,8 @@ class loginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(message="Password required."), invalid_credentials])
     rememberMe = BooleanField('Remember Me')
     submit = SubmitField('Log In')
+
+class PostForm(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
+    content = StringField("Content", validators=[DataRequired()], widget=TextArea())
+    submit = SubmitField('Post')

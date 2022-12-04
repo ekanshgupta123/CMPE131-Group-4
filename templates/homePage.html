@@ -8,6 +8,29 @@
 <h1> Home Page </h1>
 {% endblock %}
 
+
 {% block body %}
-<h3> This is the home page </h3>
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+<h3> Add a Blog Post </h3>
+<form action="{{ url_for('homePage')}}", method = "POST">
+    <div class="form-group">
+      <label for="exampleInputUsername">Title: </label>
+      {{ form.title(class='form-control', placeholder = 'Title')}}            
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Content: </label>
+      {{ form.content(class='form-control', placeholder = 'Content', rows="5")}}
+    </div>
+    <div>
+        {{ form.submit(class='button-login') }}
+    </div>
+    {{ form.csrf_token }}
+</form>
 {% endblock %}
