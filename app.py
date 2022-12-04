@@ -1,5 +1,6 @@
-from flask import Flask, render_template, redirect, url_for, flash
-from flask_login import login_user, current_user, logout_user, login_required
+from flask import Flask, render_template, redirect, url_for, flash,Blueprint
+from flask_login import login_required
+from flask_login import login_user, current_user, logout_user
 
 from config import *
 from signUp import *
@@ -20,7 +21,7 @@ def homePage():
     form = PostForm()
     if current_user.is_authenticated:
         if form.validate_on_submit():
-            post = Posts(title=form.title.data, content=form.content.data)
+            post = Posts(title=form.title.data, content=form.content.data, author=current_user.id)
             form.title.data = ''
             form.content.data = ''
             db.session.add(post)
@@ -46,13 +47,13 @@ def createAccount():
         username = form.username.data
         password = form.password.data
         profile_picture = form.profile_picture.data
-        
-        pic_filename = secure_filename(profile_picture.filename)
-        pic_name = str(uuid.uuid1()) + "_" + pic_filename
-        profile_picture.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
-        pic_filename = pic_name
-
-        user = User(username=username, password=password, profile_picture=pic_filename)
+        if profile_picture:
+            pic_filename = secure_filename(profile_picture.filename)
+            pic_name = str(uuid.uuid1()) + "_" + pic_filename
+            profile_picture.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
+            pic_filename = pic_name
+            profile_picture = pic_filename
+        user = User(username=username, password=password, profile_picture=profile_picture)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('profile'))
@@ -83,7 +84,29 @@ def delete():
         return redirect(url_for('login'))
     flash("You are not logged in. ")
     return redirect(url_for('login'))
-        
+
+@app.context_processor
+def base():
+    form = SearchForm()
+    return dict(form=form)
+
+@app.route('/search', methods = ['GET', 'POST'])
+def search():
+    form = SearchForm()
+    username = User.query
+    if form.validate_on_submit():
+        username_searched = form.searched.data
+        return render_template('search.html', form=form, searched=username_searched)
+
+@app.route("/posts/<username>")
+@login_required
+def posts(username):
+    user = User.query.filter_by(username=username).first()
+    if not user:
+        flash('No user with that username exists')
+        return redirect(url_for('/'))
+    posts = Posts.query.filter_by(author=user.id).all()
+    return render_template('posts.html', user=current_user, posts=posts, username=username)
 
 if __name__ == "__main__":
     app.run(debug=True)
