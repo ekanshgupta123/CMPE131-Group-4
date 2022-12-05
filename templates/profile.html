@@ -1,25 +1,24 @@
 {% extends 'base.html' %}
 {% block head %}
-<title> Profile </title>
+<title> {{username}}'s Profile </title>
 {% endblock %}
 
 {% block header %}
-<h1> Profile </h1>
+<h1> {{username}}'s Profile </h1>
 {% endblock %}
 
 {% block body %}
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6" style="width:2000px; margin:0 auto;">
         <div class="card">
             <div class="card-header">
-                {{ current_user.username }}
+                {{ username }}
             </div>
             <div class="row card-body">
                <div class="col-sm-6">
-                   <strong> Name: </strong> {{ current_user.username }}<br />
-                   <strong> ID: </strong>{{ current_user.id }}<br />
+                   <strong> Username: </strong> {{ username }}<br />
                 </div>
-                {% if current_user.profile_picture %}
+                {% if username.profile_picture %}
                 <img width = "200px" src = "{{ url_for('static', filename='css/images/' + current_user.profile_picture)}}"/>
                 {% else %}
                 <img width = "200px" src = "{{ url_for('static', filename='css/images/default.jpeg')}}"/>
@@ -35,19 +34,18 @@
 <br/>
 <br/>
 <br/>
-<h1> Your Blog Posts! </h1>
+<h1> {{username}} Blog Posts! </h1>
 
 {% for post in posts %}
 <div style="width:1450px; margin:0 auto;">
-    <div class="card w-75">
-        <div class="card-body">
-            <a href="/posts/{{post.user.username}}"> {{ post.user.username }} </a>
-            <h3 class="card-title"> {{ post.title }} </h5>
-            <h5 class="card-text"> {{post.content }} </h5>
-            <div class="card-footer text-muted"> Date posted: {{ post.date_posted }}</div>
-        </div>
-      </div>  
-</div>
+<div class="card w-75">
+    <div class="card-body">
+        <a href="/profile/{{post.user.username}}"> {{ post.user.username }} </a>
+        <h3 class="card-title"> {{ post.title }} </h5>
+        <h5 class="card-text"> {{post.content }} </h5>
+        <div class="card-footer text-muted"> Date posted: {{ post.date_posted }}</div>
+    </div>
+  </div>  
   <br/>
 {% endfor %}
 {% endblock %}
