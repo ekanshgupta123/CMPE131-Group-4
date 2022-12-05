@@ -27,7 +27,7 @@ def homePage():
             db.session.add(post)
             db.session.commit()
             flash("Post was submitted successfully. ")
-        return render_template('homePage.html', user=current_user, form=form)
+        return render_template('homePage.html', user=current_user, form=form, username=current_user)
     return redirect(url_for('login'))
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -36,8 +36,7 @@ def login():
     if form.validate_on_submit():
         user_object = User.query.filter_by(username=form.username.data).first()
         login_user(user_object)
-        if current_user.is_authenticated:
-            return redirect(url_for('profile'))
+        return redirect(url_for('profile',username=current_user.username))
     return render_template('login.html', form=form, user=current_user)
 
 @app.route('/signUp', methods=['GET', 'POST'])
@@ -56,16 +55,9 @@ def createAccount():
         user = User(username=username, password=password, profile_picture=profile_picture)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('profile'))
+        return redirect(url_for('profile', username=current_user.username))
     return render_template('signUp.html', form=form, user=current_user)
-
-@app.route('/profile', methods = ['GET', 'POST'])
-def profile():
-    posts = Posts.query.order_by(Posts.date_posted)
-    if not current_user.is_authenticated:
-        return redirect(url_for('login'))
-    return render_template('profile.html', user=current_user, posts=posts)
-
+    
 @app.route('/logout', methods = ['GET'])
 def logout():
     if current_user.is_authenticated:
@@ -98,15 +90,15 @@ def search():
         username_searched = form.searched.data
         return render_template('search.html', form=form, searched=username_searched)
 
-@app.route("/posts/<username>")
+@app.route("/profile/<username>")
 @login_required
-def posts(username):
+def profile(username):
     user = User.query.filter_by(username=username).first()
     if not user:
         flash('No user with that username exists')
-        return redirect(url_for('/'))
+        return redirect(url_for('homePage'))
     posts = Posts.query.filter_by(author=user.id).all()
-    return render_template('posts.html', user=current_user, posts=posts, username=username)
+    return render_template('profile.html', user=current_user, posts=posts, username=username)
 
 if __name__ == "__main__":
     app.run(debug=True)
