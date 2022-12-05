@@ -52,10 +52,11 @@ def createAccount():
             profile_picture.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
             pic_filename = pic_name
             profile_picture = pic_filename
+
         user = User(username=username, password=password, profile_picture=profile_picture)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('profile', username=current_user.username))
+        return redirect(url_for('login'))
     return render_template('signUp.html', form=form, user=current_user)
     
 @app.route('/logout', methods = ['GET'])
@@ -88,17 +89,20 @@ def search():
     username = User.query
     if form.validate_on_submit():
         username_searched = form.searched.data
-        return render_template('search.html', form=form, searched=username_searched)
+        username = username.filter(User.username.like('%' + username_searched + '%'))
+        username = username.order_by(User.id).all()
+        return render_template('search.html', form=form, searched=username_searched, username=username)
 
 @app.route("/profile/<username>")
 @login_required
 def profile(username):
     user = User.query.filter_by(username=username).first()
+    print("skdfkf", user.profile_picture)
     if not user:
         flash('No user with that username exists')
         return redirect(url_for('homePage'))
     posts = Posts.query.filter_by(author=user.id).all()
-    return render_template('profile.html', user=current_user, posts=posts, username=username)
+    return render_template('profile.html', user=user, posts=posts, username=username)
 
 if __name__ == "__main__":
     app.run(debug=True)
