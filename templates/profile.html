@@ -17,9 +17,10 @@
             <div class="row card-body">
                <div class="col-sm-6">
                    <strong> Username: </strong> {{ username }}<br />
+                   <strong> Profile Pic: {{ user.profile_picture }} </strong> 
                 </div>
-                {% if username.profile_picture %}
-                <img width = "200px" src = "{{ url_for('static', filename='css/images/' + current_user.profile_picture)}}"/>
+                {% if user.profile_picture %}
+                <img width = "200px" src = "{{ url_for('static', filename='css/images/' + user.profile_picture)}}"/>
                 {% else %}
                 <img width = "200px" src = "{{ url_for('static', filename='css/images/default.jpeg')}}"/>
                 {% endif %}
