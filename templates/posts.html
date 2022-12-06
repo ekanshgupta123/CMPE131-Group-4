@@ -18,6 +18,10 @@
             <h3 class="card-title"> {{ post.title }} </h5>
             <h5 class="card-text"> {{post.content }} </h5>
             <div class="card-footer text-muted"> Date posted: {{ post.date_posted }}</div>
+            <form class="input-group mb-3" method='POST' action="/create-comment">
+                <input type="text" id="text" name="text" class="form-control" placeholder="Comment something!" />
+                <button type="submit" class="btn btn-primary">Comment</button>
+            </form>
         </div>
         </div>  
 </div>
