@@ -4,7 +4,11 @@
 {% endblock %}
 
 {% block header %}
-<h1> {{username}}'s Profile </h1>
+    {% if username == current_user.username %}
+        <h1> Your Profile! </h1>
+    {% else %}
+        <h1> {{username}}'s Profile! </h1>
+    {% endif  %}
 {% endblock %}
 
 {% block body %}
@@ -26,7 +30,8 @@
             <div class="row card-body">
                <div class="col-sm-6">
                    <strong> Username: </strong> {{ username }}<br />
-                   <strong> Followers: </strong> {{ user.followers.count()}}
+                   <strong> Followers: </strong> {{ user.followers.count()}} <br />
+                   <strong> Following: </strong> {{ user.followed.count()}}
                    {% if username.id != current_user.username.id %}
                         {% if not current_user.is_following(user) %}
                             <a href="{{ url_for('follow', username=user.username) }}">Follow</a>
@@ -40,10 +45,16 @@
                 {% else %}
                 <img width = "200px" src = "{{ url_for('static', filename='css/images/default.jpeg')}}"/>
                 {% endif %}
-                {% if current_user == user%}
+                {% if current_user == user %}
                     <a href="{{url_for('logout')}}" class="btn btn-secondary">Logout</a> 
                     &nbsp;&nbsp;
                     <a href="{{url_for('delete')}}" class="btn btn-danger">Delete Account</a>
+                {% else %}
+                    {% if not current_user.is_following(user) %}
+                    <a class="btn btn-outline-primary me-1 flex-grow-1" href="{{ url_for('follow',username=username) }}">Follow</a>
+                    {% else %}
+                    <a class="btn btn-outline-primary me-1 flex-grow-1" href="{{ url_for('unfollow',username=username) }}">Unfollow</a>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
@@ -54,9 +65,14 @@
 <br/>
 <br/>
 
-<h1> {{username}} Blog Posts! </h1>
+{% if username == current_user.username %}
+    <h1> Your Blog Posts! </h1>
+    {% else %}
+    <h1> {{username}}'s Blog Posts! </h1>
+{% endif  %}
 
-{% for post in posts %}
+
+{% for post in posts|sort(reverse=true, attribute='date_posted')%}
 <div style="width:1450px; margin:0 auto;">
 <div class="card w-75">
     <div class="card-body">

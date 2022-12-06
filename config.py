@@ -2,7 +2,7 @@ from flask import Flask
 from flask_login import LoginManager, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 import os
-from sqlalchemy.sql import func
+from datetime import datetime
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__)) 
@@ -54,7 +54,7 @@ class User(UserMixin, db.Model):
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
-    date_posted = db.Column(db.DateTime(timezone=True), default=func.now())
+    date_posted = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
     content = db.Column(db.Text)
     author = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
 

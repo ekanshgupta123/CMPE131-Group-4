@@ -36,11 +36,11 @@
 
 <h1> Your follower's posts: </h1>
 {% for followers in current_user.followed %}
-    {% for post in followers.posts %}
+    {% for post in followers.posts|sort(reverse=true, attribute='date_posted')%}
     <div style="width:1450px; margin:0 auto;">
     <div class="card w-75">
         <div class="card-body">
-            <a href="/profile/{{post.user.username}}"> {{ post.user.username }} </a>
+            <a href="/profile/{{post.user.username}}"> From: {{ post.user.username }} </a>
             <h3 class="card-title"> {{ post.title }} </h5>
             <h5 class="card-text"> {{post.content }} </h5>
             <div class="card-footer text-muted"> Date posted: {{ post.date_posted }}</div>
