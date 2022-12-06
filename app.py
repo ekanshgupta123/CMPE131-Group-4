@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash,Blueprint
+from flask import Flask, render_template, redirect, url_for, flash
 from flask_login import login_required
 from flask_login import login_user, current_user, logout_user
 
@@ -14,7 +14,6 @@ def load_user(id):
 @app.before_first_request
 def create_tables():
     db.create_all()
-
 
 @app.route('/', methods = ['GET', 'POST'])
 def homePage():
@@ -52,7 +51,6 @@ def createAccount():
             profile_picture.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
             pic_filename = pic_name
             profile_picture = pic_filename
-
         user = User(username=username, password=password, profile_picture=profile_picture)
         db.session.add(user)
         db.session.commit()
@@ -97,12 +95,26 @@ def search():
 @login_required
 def profile(username):
     user = User.query.filter_by(username=username).first()
-    print("skdfkf", user.profile_picture)
     if not user:
         flash('No user with that username exists')
         return redirect(url_for('homePage'))
     posts = Posts.query.filter_by(author=user.id).all()
     return render_template('profile.html', user=user, posts=posts, username=username)
+
+@app.route("/follow/<username>")
+def follow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('User is not found.')
+        return redirect(url_for('homePage'))
+    if current_user.is_following(user):
+        flash("You are already following that user. ")
+        return redirect(url_for('homePage'))
+    if not current_user.is_following(user):
+        current_user.follow(user)
+        db.session.commit()
+        return render_template('profile.html', user=user, username=user.username)
+    return redirect(url_for('homePage'))
 
 if __name__ == "__main__":
     app.run(debug=True)
