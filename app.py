@@ -35,7 +35,7 @@ def login():
     if form.validate_on_submit():
         user_object = User.query.filter_by(username=form.username.data).first()
         login_user(user_object)
-        return redirect(url_for('profile',username=current_user.username))
+        return redirect(url_for('homePage'))
     return render_template('login.html', form=form, user=current_user)
 
 @app.route('/signUp', methods=['GET', 'POST'])
@@ -102,6 +102,7 @@ def profile(username):
     return render_template('profile.html', user=user, posts=posts, username=username)
 
 @app.route("/follow/<username>")
+@login_required
 def follow(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
@@ -113,8 +114,22 @@ def follow(username):
     if not current_user.is_following(user):
         current_user.follow(user)
         db.session.commit()
-        return render_template('profile.html', user=user, username=user.username)
+        flash("You are now following: " + username)
+        return redirect(url_for('profile',username=user.username))
     return redirect(url_for('homePage'))
+
+@app.route('/unfollow/<username>')
+@login_required
+def unfollow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('User is not found.')
+        return redirect(url_for('homePage'))
+    if current_user.is_following(user):
+        current_user.unfollow(user)
+        db.session.commit()
+        flash("You have now unfollowed: " + username)
+        return redirect(url_for('homePage'))
 
 if __name__ == "__main__":
     app.run(debug=True)
