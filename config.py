@@ -28,7 +28,8 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(200), nullable = False)
     profile_picture = db.Column(db.String(), nullable = True)
     posts = db.relationship('Posts', backref='user', passive_deletes=True)
-    followed = db.relationship(
+    comments =db.relationship('Comments', backref ='user', passive_deletes= True) 
+	followed = db.relationship(
         'User', secondary=followers,
         primaryjoin=(followers.c.follower_id == id),
         secondaryjoin=(followers.c.followed_id == id),
@@ -58,3 +59,10 @@ class Posts(db.Model):
     content = db.Column(db.Text)
     author = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
 
+class Comments(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    date_posted = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
+    content = db.Column(db.Text)
+    author = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+	
