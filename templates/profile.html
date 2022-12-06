@@ -8,6 +8,15 @@
 {% endblock %}
 
 {% block body %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
 <div class="row">
     <div class="col-sm-6" style="width:2000px; margin:0 auto;">
         <div class="card">
@@ -17,16 +26,25 @@
             <div class="row card-body">
                <div class="col-sm-6">
                    <strong> Username: </strong> {{ username }}<br />
-                   <strong> Profile Pic: {{ user.profile_picture }} </strong> 
+                   <strong> Followers: </strong> {{ user.followers.count()}}
+                   {% if username.id != current_user.username.id %}
+                        {% if not current_user.is_following(user) %}
+                            <a href="{{ url_for('follow', username=user.username) }}">Follow</a>
+                        {% else %}
+                            <a href="{{ url_for('homePage') }}">Unfollow</a>
+                        {% endif %}
+                   {% endif %}
                 </div>
                 {% if user.profile_picture %}
                 <img width = "200px" src = "{{ url_for('static', filename='css/images/' + user.profile_picture)}}"/>
                 {% else %}
                 <img width = "200px" src = "{{ url_for('static', filename='css/images/default.jpeg')}}"/>
                 {% endif %}
-                <a href="{{url_for('logout')}}" class="btn btn-secondary">Logout</a> 
-                &nbsp;&nbsp;
-                <a href="{{url_for('delete')}}" class="btn btn-danger">Delete Account</a>
+                {% if current_user == user%}
+                    <a href="{{url_for('logout')}}" class="btn btn-secondary">Logout</a> 
+                    &nbsp;&nbsp;
+                    <a href="{{url_for('delete')}}" class="btn btn-danger">Delete Account</a>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -35,6 +53,7 @@
 <br/>
 <br/>
 <br/>
+
 <h1> {{username}} Blog Posts! </h1>
 
 {% for post in posts %}
