@@ -6,4 +6,10 @@ Contributors:
 - Joshua Mack (@Baygulll)
 - Haomiao Wang (@hmw17)
 
-Team Lead: Ekansh Gupta
+  Team Lead: Ekansh Gupta
+
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+
