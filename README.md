@@ -1,4 +1,6 @@
-# Faketwitter
+# Fake Twitter
+
+Contributors:
 - Ekansh Gupta (@ekanshgupta123)
 - Navdip Dosanjh (@DosanjhNavdip)
 - Joshua Mack (@Baygulll)
