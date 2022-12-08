@@ -27,5 +27,5 @@ In this project, we created a website that allows users to follow other users. U
 - You will be able to sign up an account. Next, login to view your profile and home page.
 - You will be able to make a post from the home page and can see it on your profile! <img width="1440" alt="Screen Shot 2022-12-06 at 8 37 26 PM" src="https://user-images.githubusercontent.com/56240509/206089659-347950dd-7bdf-4845-9a5d-6c3f3b77c9bb.png">
 - You will be able to search up for other users and be able to follow them, if you created other accounts locally. <img width="1436" alt="Screen Shot 2022-12-06 at 8 39 22 PM" src="https://user-images.githubusercontent.com/56240509/206089912-b3c5e703-5eb3-415d-878f-3746f3dabb67.png">
-- If you follow them, you will be able to see your followings posts on your home page! <img width="1437" alt="Screen Shot 2022-12-06 at 8 40 15 PM" src="https://user-images.githubusercontent.com/56240509/206090015-de656651-e197-4556-9685-588f6984deb4.png">
+- If you follow them, you will be able to see your and your following's posts on your home page and be able to comment on them! <img width="1440" alt="Screen Shot 2022-12-07 at 10 56 31 PM" src="https://user-images.githubusercontent.com/56240509/206379380-a8548b53-f3f0-4f7e-a374-111627d3d9eb.png">
 
