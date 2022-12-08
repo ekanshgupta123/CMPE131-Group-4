@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import login_required
 from flask_login import login_user, current_user, logout_user
 
@@ -18,6 +18,8 @@ def create_tables():
 @app.route('/', methods = ['GET', 'POST'])
 def homePage():
     form = PostForm()
+    comments = Comments.query.all()
+    print("sdjkfksd", comments)
     if current_user.is_authenticated:
         if form.validate_on_submit():
             post = Posts(title=form.title.data, content=form.content.data, author=current_user.id)
@@ -26,7 +28,7 @@ def homePage():
             db.session.add(post)
             db.session.commit()
             flash("Post was submitted successfully. ")
-        return render_template('homePage.html', user=current_user, form=form, username=current_user)
+        return render_template('homePage.html', user=current_user, form=form, username=current_user, comments=comments)
     return redirect(url_for('login'))
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -35,6 +37,8 @@ def login():
     if form.validate_on_submit():
         user_object = User.query.filter_by(username=form.username.data).first()
         login_user(user_object)
+        user_object.follow(user_object)
+        db.session.commit()
         return redirect(url_for('homePage'))
     return render_template('login.html', form=form, user=current_user)
 
@@ -85,11 +89,15 @@ def base():
 def search():
     form = SearchForm()
     username = User.query
-    if form.validate_on_submit():
-        username_searched = form.searched.data
-        username = username.filter(User.username.like('%' + username_searched + '%'))
-        username = username.order_by(User.id).all()
-        return render_template('search.html', form=form, searched=username_searched, username=username)
+    if current_user.is_authenticated:
+        if form.validate_on_submit():
+            username_searched = form.searched.data
+            username = username.filter(User.username.like('%' + username_searched + '%'))
+            username = username.order_by(User.id).all()
+            return render_template('search.html', form=form, searched=username_searched, username=username)
+    else:
+        flash('Login to search')
+        return redirect(url_for('login'))
 
 @app.route("/profile/<username>")
 @login_required
@@ -131,21 +139,20 @@ def unfollow(username):
         flash("You have now unfollowed: " + username)
         return redirect(url_for('homePage'))
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
-@app.route("/comment/<post_id>", methods=['POST'])
-@login_required
-def create_comment(post_id):
-    text = request.form.get('text')
-    if not text:
-        flash('Comment cannot be empty.', category='error')
+@app.route("/comment/<posts_id>", methods=['POST'])
+def comment(posts_id):
+    form = CommentForm()
+    content = form.comment.data
+    post = Posts.query.filter_by(id=posts_id)
+    if not post:
+        flash("Cannot comment on that post. ")
     else:
-        post = Post.query.filter_by(id=post_id)
-        if post:
-            comment = Comment(text=text, author=current_user.id, post_id=post_id)
+        if form.validate_on_submit():
+            comment = Comments(content=content, author=current_user.id, post_id=posts_id)
             db.session.add(comment)
             db.session.commit()
-        else:
-            flash('Post does not exist.', category='error')
-    return redirect(url_for('views.home'))
+            flash('Comment has been added')
+    return redirect(url_for('homePage'))
+
+if __name__ == "__main__":
+    app.run(debug=True)

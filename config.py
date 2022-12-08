@@ -3,6 +3,7 @@ from flask_login import LoginManager, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime
+from sqlalchemy.sql import func
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__)) 
@@ -29,7 +30,7 @@ class User(UserMixin, db.Model):
     profile_picture = db.Column(db.String(), nullable = True)
     posts = db.relationship('Posts', backref='user', passive_deletes=True)
     comments =db.relationship('Comments', backref ='user', passive_deletes= True) 
-	followed = db.relationship(
+    followed = db.relationship (
         'User', secondary=followers,
         primaryjoin=(followers.c.follower_id == id),
         secondaryjoin=(followers.c.followed_id == id),
@@ -37,6 +38,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+    
     def delete(self):
         db.session.delete(self)
     
@@ -58,11 +60,12 @@ class Posts(db.Model):
     date_posted = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
     content = db.Column(db.Text)
     author = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    comments = db.relationship('Comments', backref='posts', passive_deletes=True)
 
 class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255))
-    date_posted = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
-    content = db.Column(db.Text)
+    date_posted = db.Column(db.DateTime(timezone=True), default=func.now())
+    content = db.Column(db.String(200), nullable=False)
     author = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id', ondelete='CASCADE'), nullable=False)
 	

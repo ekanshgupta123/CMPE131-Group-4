@@ -59,3 +59,6 @@ class SearchForm(FlaskForm):
     searched = StringField("Searched", validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+class CommentForm(FlaskForm):
+    comment = StringField("Comment", validators=[DataRequired()])
+    submit = SubmitField("Submit")
