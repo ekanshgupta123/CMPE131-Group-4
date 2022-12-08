@@ -43,7 +43,38 @@
             <a href="/profile/{{post.user.username}}"> From: {{ post.user.username }} </a>
             <h3 class="card-title"> {{ post.title }} </h5>
             <h5 class="card-text"> {{post.content }} </h5>
-            <div class="card-footer text-muted"> Date posted: {{ post.date_posted }}</div>
+            <div class="collapse" id="comments-{{post.id}}">
+              <div class="card">
+                <div class="card-body" id="comment-expanded-{{post.id}}">
+                  {% for comment in post.comments %}
+                  <div class="d-text justify-content-between align-item-center">
+                    <div>
+                      <a href="/profile/{{comment.user.username}}"> {{comment.user.username}} </a>: 
+                      {{comment.content}}
+                    </div>
+                    <div>
+                      <small class="text-muted"> {{comment.date_posted}} </small>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            <p class="card-text">
+              {% if post.comments|length > 0 %}
+              <a data-toggle = 'collapse' href="#comments-{{post.id}}" role="button">
+                <button> View {{post.comments|length}} Comments </button>
+              </a>
+              {% else %}
+                <small class="text-muted"> No Comments </small>
+              {% endif %}
+              <form class="input-group mb-3" method="POST" action="/comment/{{post.id}}">
+                <input name = "comment" class="form-control" type="text" placeholder="Comment" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+            </p>
+              {{ form.csrf_token }}
+            </form>
+          <div class="card-footer text-muted"> Date posted: {{ post.date_posted }} </div>
         </div>
       </div>  
       <br/>
