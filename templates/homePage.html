@@ -34,7 +34,7 @@
     {{ form.csrf_token }}
 </form>
 
-<h1> Your follower's posts: </h1>
+<h1> Your feed: </h1>
 {% for followers in current_user.followed %}
     {% for post in followers.posts|sort(reverse=true, attribute='date_posted')%}
     <div style="width:1450px; margin:0 auto;">
