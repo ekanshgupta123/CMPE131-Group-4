@@ -20,6 +20,8 @@ In this project, we created a website that allows users to follow other users. U
 * Python 3.10.6
 * Flask 2.2.2
 * sqlalchemy 1.4.41
+* flask-login 0.7.0
+* flask-wtf 1.01
 
 ## Setup
 - To run this project, install it locally and run app.py <img width="785" alt="Screen Shot 2022-12-06 at 8 33 05 PM" src="https://user-images.githubusercontent.com/56240509/206089156-00c8deb6-d587-478b-8eaf-68f15d4766d9.png">
