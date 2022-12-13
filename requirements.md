@@ -44,7 +44,7 @@
     - **Primary Sequence:**
         1. User goes to search bar and enters other user profile name
         2. User can click the follow button in order to follow the other user
-        3. The user that received the follow will receive a follow requeust that shows who is trying to follow them
+        3. The person that the user followed will now see their posts on their feed.
     - **Primary Postcondition:** User is able to follow others and keep a track of their messages and pictures
     - **Alternative Sequence:**
         1. The user enters a profile name that does not exist
@@ -58,7 +58,7 @@
         1. User uses the search bar to search for another user
         2. User selects the profile that the user searched for
         3. User can now view the profile of searched user
-        4. User will be able to comment on the searched user posts and message
+        4. User will be able to comment on the searched user posts and message if they follow them.
     - **Primary Postcondition:** The user is now able to see the searched user profile
     - **Alternative Sequence:**
         1. The user searches for a user that is not in the system
@@ -71,7 +71,6 @@
         1. User is logged into their account and selects the view profile option
         2. User can now see a numeric value that displays the number of followers they have
         3. User can also see a numeric value that displays the number of people that they follow
-        4. Users can view the profiles of the people that they follow and their followers
     - **Primary Postcondition:** The user is able to see their follower account
     - **Alternative Sequence:**
         1. The user does not have an account or is not logged in
