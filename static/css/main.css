@@ -15,11 +15,15 @@ body {
 h1 {
     font: 200%/150% 'Happy', cursive;
 }
+h3 {
+    font: 200%/150% 'Happy', cursive;
+}
 label {
     font: 150%/150% 'Happy', cursive;
 }
 header {
     text-align: center;
+    font-family: FarAlone;
 }
 .title {
     text-align: center;
@@ -51,4 +55,12 @@ a {
 .navbar {
   font-family: FarAlone;
   height: 70px;
+}
+.card-header {
+    color:#ffa366;
+    font: 130%/150% 'FarAlone', cursive;
+}
+.card-body {
+    color:#ff99bb;
+    font: 120%/150% 'FarAlone', cursive;
 }
