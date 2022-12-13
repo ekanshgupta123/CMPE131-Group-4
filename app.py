@@ -19,7 +19,6 @@ def create_tables():
 def homePage():
     form = PostForm()
     comments = Comments.query.all()
-    print("sdjkfksd", comments)
     if current_user.is_authenticated:
         if form.validate_on_submit():
             post = Posts(title=form.title.data, content=form.content.data, author=current_user.id)
