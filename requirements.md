@@ -17,8 +17,8 @@
 
 1. Passwords should be at least 8 characters long with at least 1 number and 1 special character
 2. The website should have a 99.5% uptime
-3. The website should load in less than 5 seconds
-4. The website should resize webpage window on different devices
+3. The website should be compatible with Mac and Windows devices
+4. The homepage should load in less than 2 seconds right after the user logs in
 
 ## Use Cases
 1. User Profiles
